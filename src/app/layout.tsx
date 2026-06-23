@@ -13,9 +13,22 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.wedodare.com"),
   title: "WeDoDare",
-  description: "WeDoDare - Dare to dream, Dare to do.",
+  description: "도전하고 기록하다 - WeDoDare",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    title: "WeDoDare",
+    description: "도전하고 기록하다 - WeDoDare",
+    url: "https://www.wedodare.com",
+    siteName: "WeDoDare",
+    type: "website",
+    locale: "ko_KR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WeDoDare",
+    description: "도전하고 기록하다 - WeDoDare",
   },
   other: {
     "google-adsense-account": "ca-pub-9849199172217987",
