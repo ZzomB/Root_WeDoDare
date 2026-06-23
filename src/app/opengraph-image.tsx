@@ -27,26 +27,6 @@ export default function OgImage() {
           border: "16px solid #f3f4f6", // 세련된 연회색 보더 테두리
         }}
       >
-        {/* 파비콘 스타일을 형상화한 로고 상자 (흰색 배경 + 검은색 테두리 + 검은색 W 텍스트) */}
-        <div
-          style={{
-            width: "110px",
-            height: "110px",
-            backgroundColor: "#ffffff",
-            border: "8px solid #000000",
-            borderRadius: "24px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#000000",
-            fontSize: "64px",
-            fontWeight: "bold",
-            marginBottom: "28px",
-          }}
-        >
-          W
-        </div>
-
         {/* 브랜드 명칭 "WeDoDare" */}
         <div
           style={{
