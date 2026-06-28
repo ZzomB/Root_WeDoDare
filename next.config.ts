@@ -13,11 +13,19 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/capture-billing",
-        destination: "https://billing-capturetoquestion.wedodare.com/capture-billing",
+        destination: "https://billing-page-capture-to-question.vercel.app/capture-billing",
       },
       {
         source: "/capture-billing/:path*",
-        destination: "https://billing-capturetoquestion.wedodare.com/capture-billing/:path*",
+        destination: "https://billing-page-capture-to-question.vercel.app/capture-billing/:path*",
+      },
+      {
+        source: "/G2Thumbnail",
+        destination: "https://g2thumbnail.vercel.app/G2Thumbnail",
+      },
+      {
+        source: "/G2Thumbnail/:path*",
+        destination: "https://g2thumbnail.vercel.app/G2Thumbnail/:path*",
       },
     ];
   },
