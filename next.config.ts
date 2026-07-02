@@ -12,20 +12,20 @@ const nextConfig: NextConfig = {
         destination: "https://blog-wedodare.vercel.app/blog/:path*",
       },
       {
-        source: "/capture-billing",
-        destination: "https://billing-page-capture-to-question.vercel.app/capture-billing",
+        source: "/product/capture-billing",
+        destination: "https://billing-page-capture-to-question.vercel.app/product/capture-billing",
       },
       {
-        source: "/capture-billing/:path*",
-        destination: "https://billing-page-capture-to-question.vercel.app/capture-billing/:path*",
+        source: "/product/capture-billing/:path*",
+        destination: "https://billing-page-capture-to-question.vercel.app/product/capture-billing/:path*",
       },
       {
-        source: "/G2Thumbnail",
-        destination: "https://g2thumbnail.vercel.app/G2Thumbnail",
+        source: "/function/G2Thumbnail",
+        destination: "https://g2thumbnail.vercel.app/function/G2Thumbnail",
       },
       {
-        source: "/G2Thumbnail/:path*",
-        destination: "https://g2thumbnail.vercel.app/G2Thumbnail/:path*",
+        source: "/function/G2Thumbnail/:path*",
+        destination: "https://g2thumbnail.vercel.app/function/G2Thumbnail/:path*",
       },
     ];
   },

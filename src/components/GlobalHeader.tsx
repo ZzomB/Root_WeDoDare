@@ -17,13 +17,13 @@ export function GlobalHeader() {
   ];
 
   const functionItems = [
-    { label: '구글드라이브 썸네일 변환 (G2Thumbnail)', href: '/G2Thumbnail' },
+    { label: '구글드라이브 썸네일 변환 (G2Thumbnail)', href: '/function/G2Thumbnail' },
   ];
 
-  const isFunctionActive = currentPath.startsWith('/G2Thumbnail');
+  const isFunctionActive = currentPath.startsWith('/function') || currentPath.startsWith('/product');
 
   return (
-    <header className="sticky top-0 z-50 w-full h-14 border-b border-border bg-background/80 backdrop-blur-md select-none">
+    <header className="relative sticky top-0 z-50 w-full h-14 border-b border-border bg-background/80 backdrop-blur-md select-none">
       <div className="mx-auto max-w-7xl h-full px-4 flex items-center justify-between">
         
         {/* 로고 영역 */}
@@ -33,11 +33,11 @@ export function GlobalHeader() {
           onClick={() => setMobileMenuOpen(false)}
         >
           <span className="w-6 h-6 rounded bg-primary flex items-center justify-center text-primary-foreground text-xs font-extrabold">D</span>
-          <span className="tracking-tight">Wedodare</span>
+          <span className="tracking-tight">WeDoDare</span>
         </Link>
 
         {/* 데스크톱 내비게이션 메뉴 */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6 h-full">
           {navItems.map((item) => {
             const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
             return (
@@ -53,10 +53,10 @@ export function GlobalHeader() {
             );
           })}
           
-          {/* 기능 드롭다운 */}
-          <div className="relative group py-2">
+          {/* 기능 드롭다운 (Nike-Style full-width menu) */}
+          <div className="group h-full flex items-center">
             <button 
-              className={`flex items-center gap-1 text-sm font-semibold transition-all hover:text-primary cursor-pointer ${
+              className={`flex items-center gap-1 text-sm font-semibold transition-all hover:text-primary cursor-pointer h-full ${
                 isFunctionActive ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
@@ -64,22 +64,96 @@ export function GlobalHeader() {
               <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
             </button>
             
-            {/* 드롭다운 콘텐츠 */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 rounded-xl border border-border bg-popover p-1.5 shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 ease-out z-50">
-              {functionItems.map((subItem) => {
-                const isSubActive = currentPath.startsWith(subItem.href);
-                return (
-                  <Link
-                    key={subItem.href}
-                    href={subItem.href}
-                    className={`block rounded-lg px-3.5 py-2.5 text-xs font-semibold transition-all hover:bg-accent hover:text-primary ${
-                      isSubActive ? 'text-primary bg-accent/60' : 'text-muted-foreground'
-                    }`}
-                  >
-                    {subItem.label}
-                  </Link>
-                );
-              })}
+            {/* 배경 어둡게 처리하는 오버레이 (Backdrop Blur) */}
+            <div className="fixed inset-0 top-14 bg-black/25 backdrop-blur-xs opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-300 z-30" />
+
+            {/* 드롭다운 콘텐츠 영역 */}
+            <div className="absolute top-full left-0 w-full bg-background border-b border-border shadow-2xl opacity-0 translate-y-[-8px] pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out z-40">
+              <div className="mx-auto max-w-7xl px-8 py-10 grid grid-cols-4 gap-8">
+                
+                {/* Column 1: 웹 기능 */}
+                <div className="space-y-4">
+                  <h4 className="text-xs font-extrabold text-muted-foreground uppercase tracking-widest">
+                    웹 기능 (Functions)
+                  </h4>
+                  <ul className="space-y-3">
+                    {functionItems.map((subItem) => {
+                      const isSubActive = currentPath.startsWith(subItem.href);
+                      return (
+                        <li key={subItem.href}>
+                          <Link
+                            href={subItem.href}
+                            className={`text-sm font-semibold transition-all hover:text-primary block ${
+                              isSubActive ? 'text-primary' : 'text-foreground'
+                            }`}
+                          >
+                            {subItem.label}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+
+                {/* Column 2: 연동 서비스 */}
+                <div className="space-y-4">
+                  <h4 className="text-xs font-extrabold text-muted-foreground uppercase tracking-widest">
+                    연동 서비스 (Products)
+                  </h4>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/product/capture-billing"
+                        className={`text-sm font-semibold transition-all hover:text-primary block ${
+                          currentPath.startsWith('/product/capture-billing') ? 'text-primary' : 'text-foreground'
+                        }`}
+                      >
+                        결제 관리 (Capture Billing)
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 3: 플랫폼 정보 */}
+                <div className="space-y-4">
+                  <h4 className="text-xs font-extrabold text-muted-foreground uppercase tracking-widest">
+                    플랫폼 (Platform)
+                  </h4>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/blog"
+                        className="text-sm font-semibold transition-all hover:text-primary block text-foreground"
+                      >
+                        WeDoDare 기술 블로그
+                      </Link>
+                    </li>
+                    <li>
+                      <a
+                        href="https://github.com/ZzomB"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold transition-all hover:text-primary block text-foreground"
+                      >
+                        GitHub 저장소
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 4: 준비 중인 기능 */}
+                <div className="space-y-4">
+                  <h4 className="text-xs font-extrabold text-muted-foreground uppercase tracking-widest">
+                    준비 중 (Upcoming)
+                  </h4>
+                  <ul className="space-y-2.5 text-xs text-muted-foreground leading-relaxed font-medium">
+                    <li>• 이미지 포맷 변환기</li>
+                    <li>• 웹 마크다운 에디터</li>
+                    <li>• 개발 및 생산성 도구 모음</li>
+                  </ul>
+                </div>
+
+              </div>
             </div>
           </div>
         </nav>
@@ -136,6 +210,7 @@ export function GlobalHeader() {
               </button>
               {mobileDropdownOpen && (
                 <div className="pl-4 py-2 flex flex-col gap-2 bg-muted/30 rounded-lg mt-2">
+                  <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mt-1 px-1">웹 기능</div>
                   {functionItems.map((subItem) => {
                     const isSubActive = currentPath.startsWith(subItem.href);
                     return (
@@ -143,7 +218,7 @@ export function GlobalHeader() {
                         key={subItem.href}
                         href={subItem.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`text-sm font-medium py-2 transition-colors ${
+                        className={`text-sm font-medium py-1 transition-colors pl-2 ${
                           isSubActive ? 'text-primary' : 'text-muted-foreground'
                         }`}
                       >
@@ -151,6 +226,17 @@ export function GlobalHeader() {
                       </Link>
                     );
                   })}
+                  
+                  <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mt-2 px-1">연동 서비스</div>
+                  <Link
+                    href="/product/capture-billing"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`text-sm font-medium py-1 transition-colors pl-2 ${
+                      currentPath.startsWith('/product/capture-billing') ? 'text-primary' : 'text-muted-foreground'
+                    }`}
+                  >
+                    결제 관리 (Capture Billing)
+                  </Link>
                 </div>
               )}
             </div>
