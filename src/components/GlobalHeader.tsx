@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 import { ChevronDown, Menu, X } from 'lucide-react';
@@ -32,7 +33,13 @@ export function GlobalHeader() {
           className="flex items-center gap-2 font-bold text-lg text-foreground hover:opacity-90 z-50"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <span className="w-6 h-6 rounded bg-primary flex items-center justify-center text-primary-foreground text-xs font-extrabold">D</span>
+          <Image 
+            src="/logo-light.png" 
+            alt="WeDoDare Logo" 
+            width={24} 
+            height={24} 
+            className="rounded-md object-contain transition-all duration-300 filter dark:invert"
+          />
           <span className="tracking-tight">WeDoDare</span>
         </Link>
 
