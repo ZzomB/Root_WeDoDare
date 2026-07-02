@@ -20,7 +20,7 @@ export function GlobalHeader() {
     { label: '구글드라이브 썸네일 변환 (G2Thumbnail)', href: '/function/G2Thumbnail' },
   ];
 
-  const isFunctionActive = currentPath.startsWith('/function') || currentPath.startsWith('/product');
+  const isFunctionActive = currentPath.startsWith('/function');
 
   return (
     <header className="relative sticky top-0 z-50 w-full h-14 border-b border-border bg-background/80 backdrop-blur-md select-none">
@@ -69,7 +69,7 @@ export function GlobalHeader() {
 
             {/* 드롭다운 콘텐츠 영역 */}
             <div className="absolute top-full left-0 w-full bg-background border-b border-border shadow-2xl opacity-0 translate-y-[-8px] pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out z-40">
-              <div className="mx-auto max-w-7xl px-8 py-10 grid grid-cols-4 gap-8">
+              <div className="mx-auto max-w-3xl px-8 py-10 grid grid-cols-2 gap-8">
                 
                 {/* Column 1: 웹 기능 */}
                 <div className="space-y-4">
@@ -95,26 +95,7 @@ export function GlobalHeader() {
                   </ul>
                 </div>
 
-                {/* Column 2: 연동 서비스 */}
-                <div className="space-y-4">
-                  <h4 className="text-xs font-extrabold text-muted-foreground uppercase tracking-widest">
-                    연동 서비스 (Products)
-                  </h4>
-                  <ul className="space-y-3">
-                    <li>
-                      <Link
-                        href="/product/capture-billing"
-                        className={`text-sm font-semibold transition-all hover:text-primary block ${
-                          currentPath.startsWith('/product/capture-billing') ? 'text-primary' : 'text-foreground'
-                        }`}
-                      >
-                        결제 관리 (Capture Billing)
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Column 3: 플랫폼 정보 */}
+                {/* Column 2: 플랫폼 정보 */}
                 <div className="space-y-4">
                   <h4 className="text-xs font-extrabold text-muted-foreground uppercase tracking-widest">
                     플랫폼 (Platform)
@@ -138,18 +119,6 @@ export function GlobalHeader() {
                         GitHub 저장소
                       </a>
                     </li>
-                  </ul>
-                </div>
-
-                {/* Column 4: 준비 중인 기능 */}
-                <div className="space-y-4">
-                  <h4 className="text-xs font-extrabold text-muted-foreground uppercase tracking-widest">
-                    준비 중 (Upcoming)
-                  </h4>
-                  <ul className="space-y-2.5 text-xs text-muted-foreground leading-relaxed font-medium">
-                    <li>• 이미지 포맷 변환기</li>
-                    <li>• 웹 마크다운 에디터</li>
-                    <li>• 개발 및 생산성 도구 모음</li>
                   </ul>
                 </div>
 
@@ -226,17 +195,6 @@ export function GlobalHeader() {
                       </Link>
                     );
                   })}
-                  
-                  <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mt-2 px-1">연동 서비스</div>
-                  <Link
-                    href="/product/capture-billing"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`text-sm font-medium py-1 transition-colors pl-2 ${
-                      currentPath.startsWith('/product/capture-billing') ? 'text-primary' : 'text-muted-foreground'
-                    }`}
-                  >
-                    결제 관리 (Capture Billing)
-                  </Link>
                 </div>
               )}
             </div>
