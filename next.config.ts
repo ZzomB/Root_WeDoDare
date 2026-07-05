@@ -27,6 +27,14 @@ const nextConfig: NextConfig = {
         source: "/function/G2Thumbnail/:path*",
         destination: "https://g2thumbnail.vercel.app/function/G2Thumbnail/:path*",
       },
+      {
+        source: "/function/ImageRandomPresentation",
+        destination: "https://imagerandompresentation.vercel.app/function/ImageRandomPresentation",
+      },
+      {
+        source: "/function/ImageRandomPresentation/:path*",
+        destination: "https://imagerandompresentation.vercel.app/function/ImageRandomPresentation/:path*",
+      },
     ];
   },
 };
