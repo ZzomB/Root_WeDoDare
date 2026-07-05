@@ -16,6 +16,12 @@ export async function GET() {
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.wedodare.com/function/ImageRandomPresentation</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.wedodare.com/product/capture-billing</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
