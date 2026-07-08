@@ -35,6 +35,14 @@ const nextConfig: NextConfig = {
         source: "/function/ImageRandomPresentation/:path*",
         destination: "https://imagerandompresentation.vercel.app/function/ImageRandomPresentation/:path*",
       },
+      {
+        source: "/function/PromptArchive",
+        destination: "https://promptarchive-wedodare.vercel.app/function/PromptArchive",
+      },
+      {
+        source: "/function/PromptArchive/:path*",
+        destination: "https://promptarchive-wedodare.vercel.app/function/PromptArchive/:path*",
+      },
     ];
   },
 };
