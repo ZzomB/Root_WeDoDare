@@ -3,5 +3,7 @@ User-agent: *
 Allow: /
 Disallow: /blog/api/
 Disallow: /blog/admin/
+Disallow: /function/ImageRandomPresentation/api/
+Disallow: /product/capture-billing/api/
 
 Sitemap: https://www.wedodare.com/sitemap.xml
