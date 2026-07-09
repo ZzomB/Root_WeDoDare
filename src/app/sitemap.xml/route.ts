@@ -10,6 +10,10 @@ export async function GET() {
   <sitemap>
     <loc>https://www.wedodare.com/blog/sitemap.xml</loc>
   </sitemap>
+  <sitemap>
+    <loc>https://www.wedodare.com/function/PromptArchive/sitemap.xml</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+  </sitemap>
 </sitemapindex>`;
 
   return new NextResponse(xml, {

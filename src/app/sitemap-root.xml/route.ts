@@ -9,6 +9,11 @@ export async function GET() {
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.wedodare.com/function/PromptArchive</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.wedodare.com/function/G2Thumbnail</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

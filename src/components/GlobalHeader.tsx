@@ -20,6 +20,7 @@ export function GlobalHeader() {
   const functionItems = [
     { label: '구글드라이브 썸네일 변환 (G2Thumbnail)', href: '/function/G2Thumbnail' },
     { label: '이미지 랜덤 제시 (ImageRandomPresentation)', href: '/function/ImageRandomPresentation' },
+    { label: '프롬프트 저장소 (PromptArchive)', href: '/function/PromptArchive' },
   ];
 
   const isFunctionActive = currentPath.startsWith('/function');
