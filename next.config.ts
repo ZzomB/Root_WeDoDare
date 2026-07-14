@@ -43,14 +43,6 @@ const nextConfig: NextConfig = {
         source: "/function/PromptArchive/:path*",
         destination: "https://promptarchive-wedodare.vercel.app/function/PromptArchive/:path*",
       },
-      {
-        source: "/feed/OpinionOnAP",
-        destination: "https://opinion-on-ap.vercel.app/feed/OpinionOnAP",
-      },
-      {
-        source: "/feed/OpinionOnAP/:path*",
-        destination: "https://opinion-on-ap.vercel.app/feed/OpinionOnAP/:path*",
-      },
     ];
   },
 };
