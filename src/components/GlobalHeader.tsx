@@ -78,7 +78,7 @@ export function GlobalHeader() {
 
             {/* 드롭다운 콘텐츠 영역 */}
             <div className="absolute top-full left-0 w-full bg-background border-b border-border shadow-2xl opacity-0 translate-y-[-8px] pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out z-40">
-              <div className="mx-auto max-w-3xl px-8 py-10 grid grid-cols-2 gap-8">
+              <div className="mx-auto max-w-5xl px-8 py-10 grid grid-cols-3 gap-8">
                 
                 {/* Column 1: 웹 기능 */}
                 <div className="space-y-4">
@@ -112,6 +112,14 @@ export function GlobalHeader() {
                   <ul className="space-y-3">
                     <li>
                       <Link
+                        href="/"
+                        className="text-sm font-semibold transition-all hover:text-primary block text-foreground"
+                      >
+                        WeDoDare 홈
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         href="/blog"
                         className="text-sm font-semibold transition-all hover:text-primary block text-foreground"
                       >
@@ -127,6 +135,25 @@ export function GlobalHeader() {
                       >
                         GitHub 저장소
                       </a>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 3: 피드 (Feed) */}
+                <div className="space-y-4">
+                  <h4 className="text-xs font-extrabold text-muted-foreground uppercase tracking-widest">
+                    피드 (Feed)
+                  </h4>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="/feed/OpinionOnAP"
+                        className={`text-sm font-semibold transition-all hover:text-primary block ${
+                          currentPath.startsWith('/feed/OpinionOnAP') ? 'text-primary' : 'text-foreground'
+                        }`}
+                      >
+                        OpinionOnAP
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -206,6 +233,20 @@ export function GlobalHeader() {
                   })}
                 </div>
               )}
+            </div>
+
+            {/* 모바일 피드 섹션 */}
+            <div className="flex flex-col gap-2 pt-2">
+              <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest px-1">피드 (Feed)</div>
+              <Link
+                href="/feed/OpinionOnAP"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-sm font-semibold py-1 transition-colors pl-2 ${
+                  currentPath.startsWith('/feed/OpinionOnAP') ? 'text-primary' : 'text-foreground/90'
+                }`}
+              >
+                OpinionOnAP
+              </Link>
             </div>
           </nav>
         </div>

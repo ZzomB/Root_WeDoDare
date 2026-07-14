@@ -14,6 +14,10 @@ export async function GET() {
     <loc>https://www.wedodare.com/function/PromptArchive/sitemap.xml</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
   </sitemap>
+  <sitemap>
+    <loc>https://www.wedodare.com/feed/OpinionOnAP/sitemap.xml</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+  </sitemap>
 </sitemapindex>`;
 
   return new NextResponse(xml, {
