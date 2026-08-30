@@ -43,6 +43,14 @@ const nextConfig: NextConfig = {
         source: "/function/PromptArchive/:path*",
         destination: "https://promptarchive-wedodare.vercel.app/function/PromptArchive/:path*",
       },
+      {
+        source: "/function/MarkdownWithFormulaRenderer",
+        destination: "https://markdownwithformularenderer.vercel.app/function/MarkdownWithFormulaRenderer",
+      },
+      {
+        source: "/function/MarkdownWithFormulaRenderer/:path*",
+        destination: "https://markdownwithformularenderer.vercel.app/function/MarkdownWithFormulaRenderer/:path*",
+      },
     ];
   },
 };

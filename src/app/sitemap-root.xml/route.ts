@@ -24,6 +24,11 @@ export async function GET() {
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.wedodare.com/function/MarkdownWithFormulaRenderer</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.wedodare.com/product/capture-billing</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
