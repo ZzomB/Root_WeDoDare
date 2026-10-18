@@ -1,7 +1,52 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Sparkles, Link as LinkIcon, Image as ImageIcon } from "lucide-react";
+import Image from "next/image";
+import {
+  ArrowRight,
+  BookOpen,
+  Sparkles,
+  Link as LinkIcon,
+  Image as ImageIcon,
+  Calendar,
+  ChevronRight,
+} from "lucide-react";
 
-export default function Home() {
+interface BlogPost {
+  id: string;
+  title: string;
+  description: string;
+  slug: string;
+  date?: string;
+  coverImage?: string;
+  tags?: string[];
+}
+
+async function getRecentPosts(): Promise<BlogPost[]> {
+  try {
+    // 1시간 캐시(ISR)로 블로그 API 호출
+    const apiUrl =
+      process.env.BLOG_API_URL ||
+      "https://blog-wedodare.vercel.app/blog/api/posts?pageSize=3&sort=latest";
+    const res = await fetch(apiUrl, {
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      return [];
+    }
+
+    const data = await res.json();
+    const posts: BlogPost[] = data.posts || [];
+    // 혹시 모를 noindex 태그 글 필터링 보장
+    return posts.filter((p) => !p.tags?.includes("noindex")).slice(0, 3);
+  } catch (err) {
+    console.error("Failed to fetch recent blog posts:", err);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const recentPosts = await getRecentPosts();
+
   return (
     <div className="relative flex flex-col flex-1 items-center justify-center overflow-hidden py-20 px-4">
       {/* Background ambient glowing mesh blobs */}
@@ -12,15 +57,14 @@ export default function Home() {
 
       {/* Main Container */}
       <div className="w-full max-w-4xl flex flex-col items-center text-center space-y-12 z-10 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-        
         {/* Hero Section */}
         <div className="space-y-6">
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-widest uppercase bg-gradient-to-r from-foreground via-primary to-emerald-500 bg-clip-text text-transparent drop-shadow-sm select-none">
             WeDoDare
           </h1>
           <p className="max-w-2xl mx-auto text-base md:text-xl text-muted-foreground font-light leading-relaxed">
-            우리는 도전을 기록하고, 아이디어를 실현하며, 함께 성장합니다.<br />
-            더 나은 사용자 경험과 지속 가능한 기술 생태계를 구축합니다.
+            우리는 도전을 기록하고, 아이디어를 실현하며, 함께 성장합니다.
+            <br />더 나은 사용자 경험과 지속 가능한 기술 생태계를 구축합니다.
           </p>
         </div>
 
@@ -127,11 +171,89 @@ export default function Home() {
           </Link>
         </div>
 
+        {/* Recent Blog Posts Section */}
+        {recentPosts.length > 0 && (
+          <div className="w-full max-w-4xl pt-8 space-y-6 text-left animate-in fade-in slide-in-from-bottom-6 duration-700">
+            <div className="flex items-center justify-between border-b border-border/60 pb-3">
+              <div className="space-y-1">
+                <span className="text-xs font-semibold tracking-wider uppercase text-primary font-mono">
+                  LATEST STORIES
+                </span>
+                <h2 className="text-2xl font-bold tracking-tight">최신 블로그 글</h2>
+              </div>
+              <Link
+                href="/blog"
+                className="group inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                <span>전체 글 보기</span>
+                <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {recentPosts.map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  className="group flex flex-col justify-between rounded-xl border border-border bg-card/40 backdrop-blur-sm overflow-hidden hover:border-primary/40 hover:shadow-lg transition-all duration-300"
+                >
+                  <div>
+                    {post.coverImage ? (
+                      <div className="relative aspect-video w-full overflow-hidden bg-muted/40">
+                        <Image
+                          src={post.coverImage}
+                          alt={post.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          unoptimized
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-primary/10 via-card to-emerald-500/10 flex items-center justify-center">
+                        <BookOpen className="w-8 h-8 text-primary/40" />
+                      </div>
+                    )}
+                    <div className="p-4 space-y-2">
+                      {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5">
+                          {post.tags.slice(0, 2).map((tag) => (
+                            <span
+                              key={tag}
+                              className="inline-block text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <h3 className="font-semibold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h3>
+                      {post.description && (
+                        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                          {post.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {post.date && (
+                    <div className="px-4 pb-4 pt-1 flex items-center gap-1.5 text-xs text-muted-foreground/70 font-mono">
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span>{post.date}</span>
+                    </div>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Extra minimal details footer */}
         <div className="text-xs text-muted-foreground/60 font-mono tracking-wide pt-8">
           © {new Date().getFullYear()} Wedodare. All rights reserved.
         </div>
-
       </div>
     </div>
   );

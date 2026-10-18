@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { hostname: "drive.google.com" },
+      { hostname: "images.unsplash.com" },
+      { hostname: "picsum.photos" },
+      { hostname: "prod-files-secure.s3.us-west-2.amazonaws.com" },
+    ],
+  },
   async rewrites() {
     return [
       {
